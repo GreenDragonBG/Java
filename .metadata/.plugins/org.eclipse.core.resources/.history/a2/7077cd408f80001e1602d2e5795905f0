@@ -1,0 +1,15 @@
+package Main;
+
+public class Bag extends Item {
+	private Item[] slots;
+	
+	public Bag(String name) {
+		super(name);
+		slots = new Item[6];
+	}
+	
+	public void add(Item i) {
+		
+	}
+
+}

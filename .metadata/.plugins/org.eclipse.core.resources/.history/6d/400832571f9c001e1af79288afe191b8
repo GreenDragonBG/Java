@@ -1,0 +1,10 @@
+package vendingMachene;
+
+public class Test {
+	public static void main(String[] args) {
+		String[] abb = "as1 . as2 . as3 . as4".split(".");
+		for(int i =0;i< abb.length;i++) {
+			System.out.println(abb[i]);
+		}
+	}
+}

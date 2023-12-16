@@ -1,0 +1,19 @@
+package Main;
+
+public class Hero {
+	private String name;
+	private Classes type;
+	private Weapon[] weapons;
+	private Armour[] armour;
+	private Potion[] potions;
+	private Bag bag;
+	
+	public Hero(String name,Classes type) {
+		this.name = name;
+		this.type = type;
+		this.weapons = new Weapon[2];
+		this.armour = new Armour[4];
+		this.potions = new Potion[6];
+		this.bag = new Bag("");
+	}
+}

@@ -1,0 +1,13 @@
+package Main;
+
+import java.util.ArrayList;
+
+public class Bag extends Item {
+	Item[] slots;
+	
+	public Bag(String name) {
+		super(name);
+		slots = new Item[6];
+	}
+
+}
