@@ -7,11 +7,14 @@ public class Hero {
 	private Armour[] armour;
 	private Potion[] potions;
 	private Bag bag;
+	static final int WeponSlots = 2;
+	static final int ArmourSlots = 4;
+	static final int PotionSlots = 6;
 
 	public Hero(String name, Classes type) {
 		this.name = name;
 		this.type = type;
-		this.weapons = new Weapon[2];
+		this.weapons = new Weapon[WeponSlots];
 		this.armour = new Armour[4];
 		this.potions = new Potion[6];
 		this.bag = new Bag("Main");
@@ -50,5 +53,9 @@ public class Hero {
 	
 	public void pickUpItem(Item item) throws Exception {
 		bag.add(item);
+	}
+	
+	public Bag getBag() {
+		return bag;
 	}
 }

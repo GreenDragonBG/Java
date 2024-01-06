@@ -1,19 +1,21 @@
 package Main;
 
+import javax.management.remote.SubjectDelegationPermission;
+
 public class Armour extends Item {
-	private int defense;
+	private int defence;
 	
 	public Armour(String name,int defense) {
 		super(name);
-		this.setDefense(defense);
+		this.setDefence(defense);
 	}
 
-	public int getDefense() {
-		return defense;
+	public int getDefence() {
+		return defence;
 	}
 
-	public void setDefense(int defense) {
-		this.defense = defense;
+	public void setDefence(int defense) {
+		this.defence = defense;
 	}
 
 }

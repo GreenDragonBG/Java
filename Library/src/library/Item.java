@@ -27,6 +27,9 @@ public abstract class Item {
 	public int getItemID() {
 		return itemID;
 	}
-
+	
+	public boolean getIsCheckedOut() {
+		return isCheckedOut;
+	}
 
 }

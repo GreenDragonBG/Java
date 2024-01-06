@@ -28,4 +28,8 @@ public class Bag extends Item {
 			}
 		}
 	}
+	
+	public Item[] getSlots() {
+		return slots;
+	}
 }
