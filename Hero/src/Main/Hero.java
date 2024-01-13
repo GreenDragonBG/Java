@@ -58,4 +58,13 @@ public class Hero {
 	public Bag getBag() {
 		return bag;
 	}
+	public Weapon[] getWeapons() {
+		return weapons;
+	}
+	public Armour[] getArmour() {
+		return armour;
+	}
+	public Potion[] getPotions() {
+		return potions;
+	}
 }

@@ -23,28 +23,22 @@ class BagTest {
 		item = new Item(ITEM_NAME) {};
 	}
 	@Test
-	void add_enoughSpaceInFirstBag() {
-		try {
+	void add_enoughSpaceInFirstBag() throws Exception {
 			bag.add(item);
-			assertTrue(true);
-		} catch (Exception e) {
-			assertFalse(true);
-		}
+			assertTrue(bag.getSlots()[0].equals(item));
 	}
 	@Test
-	void add_notEnoughSpaceInFirstBag_hasBagInBag() {
-		try {
+	void add_notEnoughSpaceInFirstBag_hasBagInBag() throws Exception {
 			
 			for(int i =0;i<5;i++) {
 				bag.add(item);
 			}
-			bag.add(new Bag("Bag2"){});
+			Bag bag2 = new Bag("Bag2");
+			bag.add(bag2);
 			
 			bag.add(item);
-			assertTrue(true);
-		} catch (Exception e) {
-			assertFalse(true);
-		}
+			assertTrue(bag.getSlots()[bag.getSlots().length-1].equals(bag2));
+			assertTrue(bag2.getSlots()[0].equals(bag2));
 	}
 	
 	@Test
