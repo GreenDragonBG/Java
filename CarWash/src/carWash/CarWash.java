@@ -32,18 +32,17 @@ public class CarWash {
 
 	public int addOrder(Automobile automobile, Set<Service> services) throws Exception {
 
+		boolean doExeption = true;
 		for (Service s : services) {
-			boolean doExeption = true;
 			for (String name : this.services.keySet()) {
 				if (s.getName().equals(name)) {
 					doExeption = false;
 				}
 			}
-			if (doExeption) {
-				throw new Exception("Service isnt offered!");
-			}
 		}
-
+		if (doExeption) {
+			throw new Exception("Service isnt offered!");
+		}
 		if (!(activeOrders.size() < slots)) {
 			throw new Exception("Out of slots!");
 		}
@@ -53,10 +52,11 @@ public class CarWash {
 
 	}
 
-	public void completeOrder(int id) throws Exception{		
+	public void completeOrder(int id) throws Exception{	
+		boolean doException = true;
 		for (int i = 0; i < activeOrders.size(); i++) {
 			if ((int)activeOrders.get(i).getId() == id) {
-				
+				doException = false;
 				for (Service s : activeOrders.get(i).getServices()) {
 						this.cash += s.getPrice() * activeOrders.get(i).getAutomobile().getPriceMultiplayer();
 				}
@@ -64,6 +64,9 @@ public class CarWash {
 
 				completedOrders.add(activeOrders.get(i));
 				activeOrders.remove(i);
+		}
+		if(doException) {
+			throw new Exception("No such ID");
 		}
 	}
 
@@ -104,5 +107,9 @@ public class CarWash {
 	
 	public List<Order> getActiveOrders() {
 		return activeOrders;
+	}
+	
+	public List<Order> getCompletedOrders() {
+		return completedOrders;
 	}
 }

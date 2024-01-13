@@ -1,2 +1,31 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<qualifiedTypeNameHistroy/>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="vendingMachine.Recipe"/>
+    <fullyQualifiedTypeName name="java.lang.Double"/>
+    <fullyQualifiedTypeName name="java.util.Random"/>
+    <fullyQualifiedTypeName name="java.io.File"/>
+    <fullyQualifiedTypeName name="library.Book"/>
+    <fullyQualifiedTypeName name="library.DVD"/>
+    <fullyQualifiedTypeName name="library.Item"/>
+    <fullyQualifiedTypeName name="library.Library"/>
+    <fullyQualifiedTypeName name="junit.extensions.TestSetup"/>
+    <fullyQualifiedTypeName name="javax.management.remote.SubjectDelegationPermission"/>
+    <fullyQualifiedTypeName name="Main.Armour"/>
+    <fullyQualifiedTypeName name="Main.Bag"/>
+    <fullyQualifiedTypeName name="junit.framework.AssertionFailedError"/>
+    <fullyQualifiedTypeName name="java.lang.Exception"/>
+    <fullyQualifiedTypeName name="Main.Potion"/>
+    <fullyQualifiedTypeName name="Main.Weapon"/>
+    <fullyQualifiedTypeName name="Main.Hero"/>
+    <fullyQualifiedTypeName name="Main.Item"/>
+    <fullyQualifiedTypeName name="carWash.CarWash"/>
+    <fullyQualifiedTypeName name="org.junit.jupiter.api.Test"/>
+    <fullyQualifiedTypeName name="java.util.Set"/>
+    <fullyQualifiedTypeName name="java.util.HashSet"/>
+    <fullyQualifiedTypeName name="carWash.Automobile"/>
+    <fullyQualifiedTypeName name="carWash.Manufacturers"/>
+    <fullyQualifiedTypeName name="carWash.Service"/>
+    <fullyQualifiedTypeName name="Banking.BankAccount"/>
+    <fullyQualifiedTypeName name="org.junit.jupiter.api.BeforeEach"/>
+    <fullyQualifiedTypeName name="Banking.CreditBankAccount"/>
+</qualifiedTypeNameHistroy>
