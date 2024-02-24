@@ -24,18 +24,74 @@ public class GasStation {
 	}
 
 	public void chekout() {
+		double total =0;
 		for(Product p : basket.keySet()) {
 			System.out.println("<"+ p.getCode() +">" + " / " 
 		+ basket.get(p) + p.getUnit() + " / " + p.getPrice() 
-		+ " / " + p.getPrice()*basket.get(p));
+		+ " / " + p.getPrice()*basket.get(p) +"lv.");
 		}
-		getDiscounts().stream()
-		.filter(d -> d.getCondition()==true);
+		//Discount
+		for(Discount discount : getDiscounts().stream().filter(d -> !d.useDiscount(basket).isEmpty()).toList()) {
+			System.out.print("-<"+ discount.getName() +"> / discount ("+ discount.getDiscount());
+			if(discount.getPercetege()) {
+				System.out.println("%)");
+			}else {
+				System.out.println("lv.)");
+			}
+			//Discount type
+			if(discount.getTypes().isEmpty()) {
+				System.out.print("--all / ");
+			
+			}else if(discount.getTypes().get(0) instanceof Category) {
+				System.out.print("--");
+				for(Object c : discount.getTypes()) {
+					System.out.print(((Category) c).getName()+";");
+				}
+				System.out.print(" / ");
+			
+			}else if(discount.getTypes().get(0) instanceof Product) {
+				System.out.print("--");
+				for(Object c : discount.getTypes()) {
+					System.out.print(((Product) c).getCode()+";");
+				}
+				System.out.print(" / ");
+			}
+			//Discount value
+			for(Object p : discount.useDiscount(basket).keySet()) {
+				System.out.println("<"+ ((Product) p).getCode() +"- "+ (double)discount.useDiscount(basket).get(p) +"lv.>");
+			}
+		}
+		//Total Price
+		System.out.println("-------------------------------------------------------");
+		
+		for(Discount discount : getDiscounts().stream().filter(d -> !d.useDiscount(basket).isEmpty()).toList()) {
+			System.out.print("#<"+ discount.getName() +"> / discount ("+ discount.getDiscount());
+			if(discount.getPercetege()) {
+				System.out.println("%)");
+			}else {
+				System.out.println("lv.)");
+			}
+		}
+		
+		for(Product p : basket.keySet()) {
+			total+=p.getCurrentPrice()*basket.get(p);
+			p.setCurrentPrice(p.getPrice());
+		}
+		System.out.println("Total / <"+total+"lv.>");
+		
 	}
 	
 	
 	
 	
+	public Map<Product, Integer> getBasket() {
+		return basket;
+	}
+
+	public void setBasket(Map<Product, Integer> basket) {
+		this.basket = basket;
+	}
+
 	public Category getFuel() {
 		return Fuel;
 	}

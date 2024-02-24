@@ -3,14 +3,13 @@ package gasStation;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Category {
+public class Category extends Items{
 	private String name;
-	private int code;
 	private List<Product> products;
 	
 	public Category(String name, int code) {
+		super(code);
 		this.name =name;
-		this.code =code;
 		this.products = new ArrayList<Product>() {};
 	}
 
@@ -20,14 +19,6 @@ public class Category {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public int getCode() {
-		return code;
-	}
-
-	public void setCode(int code) {
-		this.code = code;
 	}
 
 	public List<Product> getProducts() {

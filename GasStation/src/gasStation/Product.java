@@ -1,32 +1,33 @@
 package gasStation;
 
-public class Product {
+public class Product  extends Items{
 	private double price;
-	private int code;
 	private String unit;
 	private Category category;
+	private double currentPrice;
 	
 	public Product(double price, int code, String unit, Category category) {
+		super(code);
 		this.price =price;
-		this.code = code;
 		this.unit =unit;
 		this.category =category;
+		this.currentPrice=price;
 	}
 
+	public double getCurrentPrice() {
+		return currentPrice;
+	}
+	
+	public void setCurrentPrice(double currentPrice) {
+		this.currentPrice = currentPrice;
+	}
+	
 	public double getPrice() {
 		return price;
 	}
 
 	public void setPrice(double price) {
 		this.price = price;
-	}
-
-	public int getCode() {
-		return code;
-	}
-
-	public void setCode(int code) {
-		this.code = code;
 	}
 
 	public String getUnit() {
