@@ -5,12 +5,14 @@ import java.util.concurrent.ThreadLocalRandom;
 public class PitStopTeam {
     private int id;
     private Team team;
+    private PitLane pitLane;
     private int servicedCars = 0;
     private boolean open = true;
  
-    public PitStopTeam(Team team) {
+    public PitStopTeam(Team team, PitLane pitLane) {
     	this.id = Race.counter++;
 		this.team = team;
+		this.pitLane = pitLane;
 	}
     
 	public void service(Car car){
@@ -21,6 +23,11 @@ public class PitStopTeam {
         }catch(InterruptedException e){
         }
         this.open = true;
+        
+        synchronized (pitLane) {
+        	pitLane.notifyAll();
+		}
+        
     }
     public int getNumberOfServicedCars(){
         return this.servicedCars;

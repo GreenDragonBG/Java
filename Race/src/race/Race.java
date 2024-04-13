@@ -19,40 +19,25 @@ public class Race{
     }
     
     public void registerCar(Team team, String driverName){
-        cars.add(new Car(team, driverName));
+        cars.add(new Car(team, driverName, this));
     }
     public void registerTeam(Team team){
-        this.track.getPitLane().getPitStopTeams().add(new PitStopTeam(team));
+        this.track.getPitLane().getPitStopTeams().add(new PitStopTeam(team,this.track.getPitLane()));
     }
     
     public void start(){
-    	Race race = this;
-    	
     	for(Car car : cars) {
-    		Thread thread = new Thread("Car: "+ car.getId()) {
-    			@Override
-    			public void run() {
-    				int timeOnTrack =0;
-    				while(timeOnTrack >= race.getTrack().getTimeToFinish()) {
-    					int currentTime = car.getTimeForNextPitStop();
-    					timeOnTrack+= currentTime;
-    					try {
-    						Thread.sleep(currentTime);
-    					} catch (InterruptedException e) {}
-        				car.enterPitLane();
-    				}	
-    			}
-    		};
-    		
-    		thread.start();
+    		car.start();
     	}
     	
     	try {
-			Thread.sleep(60000);
+			Thread.sleep(getTrack().getTimeToFinish());
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+    	for(Car car : cars) {
+    		car.interrupt();
+    	}
     	printRace();
     }
     

@@ -32,6 +32,22 @@ public class PitLane {
            throw new Exception("No cars at the pit lane");
        }
     }
+    
+    public synchronized void enterPitLane(Car car) {
+      	 if(car.getTeam().getStops().stream().anyMatch(s-> s.isOpen())) {
+      		car.getTeam().getStops().stream().filter(s -> s.isOpen()).findFirst().get().service(car);
+      	 }else {
+      		 try {
+   				this.wait();
+   			} catch (InterruptedException e) {
+   				e.printStackTrace();
+   			}
+      		 enterPitLane(car);
+      	 }
+       }
+    
+    
+    
 	public List<PitStopTeam> getPitStopTeams() {
 		return pitStopTeams;
 	}

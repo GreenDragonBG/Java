@@ -2,8 +2,8 @@ package race;
 
 public class Track{
     String name;
-    int timeToFinish;
     PitLane pitLane;
+    int timeToFinish;
     
     public Track( String name, int timeToFinish, PitLane pitLane) {
     	this.name = name;

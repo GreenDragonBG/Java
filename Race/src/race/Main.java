@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class Main {
 	public static void main(String[] args) {
-		Race r = new Race( new Date(), new Track("Track101", 30000, new PitLane(5)));
+		Race r = new Race( new Date(), new Track("Track101", 20000, new PitLane(5)));
 		Team cherven = new Team("Cherveni");
 		Team sin = new Team("Sini");
 		r.registerCar(cherven, "Driver 01");
@@ -16,8 +16,6 @@ public class Main {
 		r.registerCar(sin, "Driver 03");
 		r.registerCar(sin, "Driver 11");
 		
-		r.registerTeam(sin);
-		r.registerTeam(cherven);
 		r.registerTeam(sin);
 		r.registerTeam(cherven);
 		

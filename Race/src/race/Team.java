@@ -29,6 +29,7 @@ public class Team {
         	this.stops.add(stop);        	
         }
     }
+    
 	public String getName() {
 		return name;
 	}
