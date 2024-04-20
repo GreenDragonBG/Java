@@ -15,6 +15,7 @@ public class DeliverySystem {
 	
 	public DeliverySystem() {
 		this.users = new HashMap<String,User>() {};
+		this.users.put("admin", new User("admin", "admin123", Role.ADMINISTRATOR));
 		this.orders = new ArrayList<Order>() {};
 		this.addresses = new ArrayList<Address>() {};
 		this.currentUser = null;
@@ -33,11 +34,36 @@ public class DeliverySystem {
 	}
 	
 	public void registerUser(String username, String password) {
-		if(getCurrentUser().getRole()==Role.ADMINISTRATOR && users.containsKey(username)) {
+		if(getCurrentUser().getRole()==Role.ADMINISTRATOR && !users.containsKey(username)) {
 				users.put(username, new User(username, password, Role.CUSTOMER));
 		}else {
 			throw new RuntimeException("You are not a Administrator or the username has been already used!");
 		}
+	}
+	
+	public void registerDriver(String username, String password) {
+		if(getCurrentUser().getRole()==Role.ADMINISTRATOR && !users.containsKey(username)) {
+			users.put(username, new User(username, password, Role.DRIVER));
+	}else {
+		throw new RuntimeException("You are not a Administrator or the username has been already used!");
+	}
+	}
+	
+	public void addAddress(Address address) {
+		if(getCurrentUser().getRole()==Role.CUSTOMER && address.getUserId()==getCurrentUser().getId()) {
+			getAddresses().add(address);
+	}else {
+		throw new RuntimeException("You are not a Customer or the user is not current user!");
+	}
+	}
+	
+	public void addOrder (Order order) {
+		if(getCurrentUser().getRole()==Role.CUSTOMER) {
+				
+
+		}else {
+		throw new RuntimeException("You are not a Customer or the user is not current user!");
+	}
 	}
 	
 	

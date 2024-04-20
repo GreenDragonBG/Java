@@ -7,7 +7,5 @@ public abstract class Package {
 		this.id = id;
 	}
 	
-	public double getDeliveryPrice(){
-		return 1;
-	}
+	public abstract double getDeliveryPrice();
 }
