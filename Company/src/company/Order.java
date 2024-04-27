@@ -1,5 +1,6 @@
 package company;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Order {
@@ -12,6 +13,7 @@ public class Order {
 		this.id = id;
 		this.addressId = addressId;
 		this.status = status;
+		packages = new ArrayList<Package>();
 	}
 	
 	public double getDeliveryPrice(){

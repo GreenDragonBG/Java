@@ -58,12 +58,46 @@ public class DeliverySystem {
 	}
 	
 	public void addOrder (Order order) {
-		if(getCurrentUser().getRole()==Role.CUSTOMER) {
-				
-
+		if(getCurrentUser().getRole()==Role.CUSTOMER && addresses.stream().filter(a -> a.getUserId()==getCurrentUser().getId()).findFirst().get().getId()==order.getAddressId()) {
+				order.setStatus(Status.CREATED);
+				orders.add(order);
 		}else {
-		throw new RuntimeException("You are not a Customer or the user is not current user!");
+		throw new RuntimeException("You are not a Customer or the address is wrong!");
 	}
+	}
+	
+	public void addPackage(Package pack, int orderId) {
+		if(getCurrentUser().getRole()==Role.CUSTOMER && orders.stream().filter(o -> o.getAddressId()== addresses.stream().filter(a->a.getUserId()==getCurrentUser().getId()).findFirst().get().getId()).findFirst().get().getId()==orderId) {
+			
+			orders.stream().filter(o->o.getId()==orderId).findFirst().get().getPackages().add(pack);
+		}else {
+			throw new RuntimeException("You are not a Customer or the order ID is wrong!");
+		}
+	}
+	
+	public void getOrderToDeliver(){
+		if(orders.stream().filter(o -> o.getAddressId()== addresses.stream().filter(a->a.getUserId()==getCurrentUser().getId()).findFirst().get().getId()).anyMatch(o-> o.getStatus().equals(Status.CREATED))) {
+			orders.stream().filter(o -> o.getAddressId()== addresses.stream().filter(a->a.getUserId()==getCurrentUser().getId()).findFirst().get().getId()).filter(o->o.getStatus().equals(Status.CREATED)).findAny().get().setStatus(Status.DELIVERING);
+		}else {
+			throw new RuntimeException("There are no current orders for this user that are not beeing delivered or you are not a Customer");
+		}
+		
+	}
+	
+	public void getOrderToDeliver(int id){
+		if( orders.stream().filter(o-> o.getStatus().equals(Status.CREATED)).anyMatch(o->o.getId()==id)) {
+			orders.stream().filter(o-> o.getStatus().equals(Status.CREATED)).filter(o->o.getId()==id).findFirst().get().setStatus(Status.DELIVERING);
+		}else {
+			throw new RuntimeException("There are no current orders for this user that are not beeing delivered or you are not a Customer");
+		}	
+	}
+
+	public void deliverOrder(int id) {
+		if(orders.stream().filter(o-> o.getStatus().equals(Status.DELIVERING)).anyMatch(o->o.getId()==id)) {
+			orders.stream().filter(o-> o.getStatus().equals(Status.DELIVERING)).filter(o->o.getId()==id).findFirst().get().setStatus(Status.DELIVERED);
+		}else {
+			throw new RuntimeException("There are no current orders for this user that are not delivered or you are not a Customer");
+		}	
 	}
 	
 	
